@@ -1,10 +1,9 @@
 #include <iostream>
-
+using namespace std;
 class Node{
-    protected:
+    public:
     Node *next;
     int data;
-    public:
     Node(int data, Node *next=NULL){
         this->data = data;
         this->next = next;
@@ -22,20 +21,20 @@ class Node{
         return this->next !=NULL;
     }
 };
-class LinkedList{
+class CircularLinkedList{
     protected:
     Node *head;
     public:
-    LinkedList(){
+    CircularLinkedList(){
         this->head = NULL;
     }
     void insertAtEnd(int data){
         Node *temp=this->head, *newNode = new Node(data);
-        if ((this->head ==NULL)){
+        if (this->head ==NULL){
             this->head = newNode;
         }
-        while (temp->hasNext()) {
-            temp = temp->getNext();
+        while (temp->next != NULL) {
+            temp = temp->next;
         }
         temp->setNext(newNode);   
     }
@@ -49,14 +48,14 @@ class LinkedList{
             return true;
         }
         int iter = 0;
-        while (temp->hasNext() && pos>iter ) {
+        while (temp->next != NULL && pos>iter ) {
             iter++;
             if (iter == pos){
                 newNode->setNext(temp);
                 temp->setNext(newNode);
                 return true;
             }
-            temp = temp->getNext();
+            temp = temp->next;
         }
         return false;
     }
@@ -64,61 +63,87 @@ class LinkedList{
         Node *deletedNode = NULL, *temp = this->head;
         int iter=0, deletedData=0;
         if (pos==0){
-            deletedData = this->head->getData();
+            deletedData = this->head->data;
             free(temp);
-            this->head = this->head->getNext();
+            this->head = this->head->next;
             return deletedData;
         }
-        while (temp->hasNext() && pos>iter){
+        while (temp->next != NULL && pos>iter){
             iter++;
             if (pos==iter){
-                deletedData = temp->getNext()->getData();
-                free(temp->getNext());
-                temp->setNext(temp->getNext()->getNext());  
+                deletedData = temp->next->data;
+                free(temp->next);
+                temp->setNext(temp->next->next);  
                 return deletedData; 
             }
-            temp=temp->getNext();
+            temp=temp->next;
         }
         return -1;
     }
     int removeFromStart(){
+        int deletedData ;
         if (this->head != NULL){
-            this->head = this->head->getNext();
+            deletedData= this->head->data;
+            this->head = this->head->next;
         }
         cout << "List is Empty"<<endl;
+        return -1;
     }
     int removeFromEnd(){
         Node *deletedNode = NULL, *temp = this->head;
         int deletedData=0;
         if (this->head == NULL){
             cout << "List is Empty"<<endl;
+            return -1;
         }
-        while (temp->hasNext()->hasNext()){
-            temp=temp->getNext();
+        while (temp->next->next != NULL){
+            temp=temp->next;
         }
-        deletedData = temp->getNext()->getData();
-        free(temp->getNext());
-        temp->setNext(temp->getNext()->getNext());
+        deletedData = temp->next->data;
+        free(temp->next);
+        temp->setNext(temp->next->next);
+        return deletedData;
     }
     int count(){
         Node *temp = this->head;
         int count = 0;
-        while(temp->hasNext()){
+        while(temp->next != NULL){
             count++;
-            temp = temp->getNext();
+            temp = temp->next;
         }
         return count+1;
     }
     void print(){
         Node *temp = this->head;
-        cout << "\nLinked List Elements: "
-        while(temp->hasNext()){
-            cout << temp->getData() ;
-            temp=temp->getNext();
-            if (!temp->hasNext()){
+        cout << "\nLinked List Elements: ";
+        while(temp->next != NULL){
+            cout << temp->data ;
+            temp=temp->next;
+            if (temp->next != NULL){
                 cout << " -> ";
             }
         }
         cout<<endl;
+    }
+    void reverse(){
+        Node *cur, *prev, *next;
+        cur = this->head;
+        while(cur->next != NULL){
+            next = cur->next;
+            cur->setNext(prev);
+            prev = cur;
+            cur = next;
+        }
+        this->head = prev;
+    }
+    int search(int q){
+        Node *temp = this->head;
+        while(temp->next != NULL){
+            if (q == temp->data){
+                return temp->data;
+            }
+            temp = temp->next;
+        }
+        return -1;
     }
 };
