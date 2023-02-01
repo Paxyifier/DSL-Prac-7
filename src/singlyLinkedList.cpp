@@ -159,7 +159,8 @@ class LinkedList{
     }
 };
 
-int main(){    LinkedList listTest = LinkedList();
+int main(){    
+    LinkedList listTest = LinkedList();
     bool run = true;
     int choice, input, pos;
     LinkedList list;
