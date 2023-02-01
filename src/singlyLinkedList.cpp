@@ -120,7 +120,7 @@ class LinkedList{
     }
     void print(){
         Node *temp = this->head;
-        cout << "\nLinked List Elements: ";
+        cout << "Linked List Elements: ";
         while(temp != NULL){
             cout << temp->data ;
             temp = temp->next;
@@ -139,16 +139,6 @@ class LinkedList{
             current = next;
         }
         this->head = prev;
-        
-        // Node *cur, *prev, *next;
-        // cur = this->head;
-        // while(cur->next != NULL){
-        //     next = cur->next;
-        //     cur->next =(prev);
-        //     prev = cur;
-        //     cur = next;
-        // }
-        // this->head = prev;
     }
     int search(int q){
         Node *temp = this->head;

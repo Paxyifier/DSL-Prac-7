@@ -113,10 +113,15 @@ class DoublyLinkedList{
         return count;
     }
     void print(){
+
         Node *temp = this->head;
-        while (temp != NULL){
-            cout << temp->data << " ";
+        cout << "Doubly Linked List Elements: ";
+        while(temp != NULL){
+            cout << temp->data ;
             temp = temp->next;
+            if (temp != NULL){
+                cout << " -> ";
+            } 
         }
         cout << endl;
     }
@@ -151,7 +156,16 @@ int main(){
     bool run = true;
     int choice, data, pos;
     while (run){
-        cout << "1. Insert at end\n2. Insert at start\n3. Insert at position\n4. Delete from start\n5. Delete from end\n6. Delete from position\n7. Count\n8. Print\n9. Reverse\n10. Exit\n";
+        cout << "1. Insert at end"<<endl;
+        cout << "2. Insert at start"<<endl;
+        cout << "3. Insert at position"<<endl;
+        cout << "4. Delete from start"<<endl;
+        cout << "5. Delete from end"<<endl;
+        cout << "6. Delete from position"<<endl;
+        cout << "7. Count"<<endl;
+        cout << "8. Print"<<endl;
+        cout << "9. Reverse"<<endl;
+        cout << "10. Exit"<<endl;
         cout << "Enter your choice: ";
         cin >> choice;
         switch (choice){
