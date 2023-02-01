@@ -162,7 +162,34 @@ class LinkedList{
     }
 };
 
-int main(){
+int main(){    LinkedList listTest = LinkedList();
+    listTest.insertAtStart(1);
+    listTest.insertAtStart(2);
+    listTest.insertAtEnd(3);
+    listTest.insertAt(7, 2);
+    listTest.print();
+    cout << "removing from position 2: " << listTest.removeFrom(2) << endl;
+    cout << "removing from position 0: " << listTest.removeFromStart() << endl;
+    cout << "removing from end: " << listTest.removeFromEnd() << endl;
+    cout << "removing from position 5: " << listTest.removeFrom(5) << endl;
+    cout << "removing from position 1: " << listTest.removeFromStart() << endl;
+    cout << "removing from end: " << listTest.removeFromEnd() << endl;
+    cout << "removing from position 1: " << listTest.removeFromStart() << endl;
+    cout << "removing from end: " << listTest.removeFromEnd() << endl;
+    cout << "removing from position 1: " << listTest.removeFromStart() << endl;
+    cout << "removing from end: " << listTest.removeFromEnd() << endl;
+    listTest.insertAtStart(1);
+    listTest.insertAtStart(2);
+    listTest.insertAtEnd(3);
+    listTest.insertAtStart(4);
+    listTest.insertAtEnd(5);
+    listTest.insertAtEnd(6);
+    listTest.print();
+    cout << "reversing the list" << endl;
+    listTest.reverse();
+    listTest.print();
+    cout << "Element found: " << listTest.search(5) << endl;
+    cout << "Element found: " << listTest.search(7) << endl;
     bool run = false;
     int choice, input, pos;
     LinkedList list;
