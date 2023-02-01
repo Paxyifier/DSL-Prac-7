@@ -124,7 +124,7 @@ class CircularLinkedList{
     }
     void print(){
         Node *temp = this->head;
-        cout << "\nCircular Linked List Elements: ";
+        cout << "Circular Linked List Elements: ";
         do{
             cout << temp->data << " ->";
             temp = temp->next;
@@ -167,7 +167,18 @@ int main(){
     bool run = true;
     int choice, data, pos;
     while (run){
-        cout << "1. Insert At End\n2. Insert At Start\n3. Insert At\n4. Remove From End\n5. Remove From Start\n6. Remove From\n7. Count\n8. Print\n9. Reverse\n10. Search\n11. Exit\n";
+        cout << "1. Insert At End"<<endl;
+        cout << "2. Insert At Start"<<endl;
+        cout << "3. Insert At"<<endl;
+        cout << "4. Remove From End"<<endl;
+        cout << "5. Remove From Start"<<endl;
+        cout << "6. Remove From"<<endl;
+        cout << "7. Count"<<endl;
+        cout << "8. Print"<<endl;
+        cout << "9. Reverse"<<endl;
+        cout << "10. Search"<<endl;
+        cout << "11. Exit"<<endl;
+        cout << "";
         cout << "Enter Choice: ";
         cin >> choice;
         switch(choice){
