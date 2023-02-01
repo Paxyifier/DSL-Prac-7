@@ -148,33 +148,7 @@ class DoublyLinkedList{
 };
 int main(){
     DoublyLinkedList *list = new DoublyLinkedList();
-    // write code to test all functions of DoublyLinkedList class
-    DoublyLinkedList listTest =  DoublyLinkedList();
-    listTest.insertAtStart(1);
-    listTest.print();
-    listTest.insertAtStart(2);
-    listTest.print();
-    listTest.insertAtEnd(3);
-    listTest.print();
-    cout << boolalpha <<listTest.insertAt(7, 2)<<endl;
-    listTest.print();
-    cout << "removing from position 2: " << listTest.removeFrom(2) << endl;
-    listTest.print();
-    cout << "removing from position 0: " << listTest.removeFromStart() << endl;
-    listTest.print();
-    cout << "removing from end: " << listTest.removeFromEnd() << endl;
-    listTest.insertAtStart(2);
-    listTest.insertAtEnd(3);
-    listTest.insertAtStart(4);
-    listTest.insertAtEnd(5);
-    listTest.insertAtEnd(6);
-    listTest.print();
-    cout << "reversing the list" << endl;
-    listTest.reverse();
-    listTest.print();
-    cout << "Element found: " << listTest.search(5) << endl;
-    cout << "Element found: " << listTest.search(7) << endl;
-    bool run = false;
+    bool run = true;
     int choice, data, pos;
     while (run){
         cout << "1. Insert at end\n2. Insert at start\n3. Insert at position\n4. Delete from start\n5. Delete from end\n6. Delete from position\n7. Count\n8. Print\n9. Reverse\n10. Exit\n";
