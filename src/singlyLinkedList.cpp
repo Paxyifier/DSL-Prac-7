@@ -62,52 +62,57 @@ class LinkedList{
         return false;
     }
     int removeFrom(int pos){
-        Node *deletedNode = NULL, *temp = this->head;
-        int iter=0, deletedData=0;
-        if (pos==0){
-            deletedData = this->head->data;
-            free(temp);
-            this->head = this->head->next;
-            return deletedData;
-        }
-        while (temp->next != NULL && pos>iter){
-            iter++;
-            if (pos==iter){
-                deletedData = temp->next->data;
-                free(temp->next);
-                temp->next =(temp->next->next);  
-                return deletedData; 
-            }
-            temp=temp->next;
-        }
-        return -1;
-    }
-    int removeFromStart(){
-        int deletedData ;
-        if (this->head != NULL){
-            deletedData= this->head->data;
-            this->head = this->head->next;
-        }
-        cout << "List is Empty"<<endl;
-        return -1;
-    }
-    int removeFromEnd(){
-        Node *deletedNode = NULL, *temp = this->head;
-        int deletedData=0;
+        Node *temp = this->head, *deletedNode = NULL;
+        int deletedData = 0;
         if (this->head == NULL){
             cout << "List is Empty"<<endl;
             return -1;
         }
-        while (temp->next != NULL){
-            temp=temp->next;
-            if (temp->next == NULL){
-                deletedData = temp->data;
-                free(temp);
-                temp->next = NULL;
+        if (pos == 0){
+            return removeFromStart();
+        }
+        int iter = 0;
+        while (temp->next != NULL && pos>iter){
+            iter++;
+            if (iter == pos){
+                deletedData = temp->next->data;
+                deletedNode = temp->next;
+                temp->next = temp->next->next;
+                free(deletedNode);
                 return deletedData;
             }
+            temp = temp->next;
         }
         return -1;
+    }
+    int removeFromStart(){
+        Node *deletedNode = NULL;
+        int deletedData = 0;
+        if (this->head == NULL){
+            cout << "List is Empty"<<endl;
+            return -1;
+        }
+        deletedData = this->head->data;
+        deletedNode = this->head;
+        this->head = this->head->next;
+        free(deletedNode);
+        return deletedData;
+    }
+    int removeFromEnd(){
+        Node *temp = this->head, *deletedNode = NULL;
+        int deletedData = 0;
+        if (this->head == NULL){
+            cout << "List is Empty"<<endl;
+            return -1;
+        }
+        while (temp->next->next != NULL) {
+            temp = temp->next;
+        }
+        deletedData = temp->next->data;
+        deletedNode = temp->next;
+        temp->next = NULL;
+        free(deletedNode);
+        return deletedData;
     }
     int count(){
         Node *temp = this->head;
@@ -131,21 +136,23 @@ class LinkedList{
         cout << endl;
     }
     void reverse(){
-        Node *prev = NULL, *current = this->head, *next = NULL;
-        while (current != NULL){
-            next = current->next;
-            current->next = prev;
-            prev = current;
-            current = next;
+        Node *temp = this->head, *prev = NULL, *next = NULL;
+        while(temp != NULL){
+            next = temp->next;
+            temp->next = prev;
+            prev = temp;
+            temp = next;
         }
         this->head = prev;
     }
     int search(int q){
         Node *temp = this->head;
-        while(temp->next != NULL){
-            if (q == temp->data){
-                return temp->data;
+        int pos = 0;
+        while(temp != NULL){
+            if (temp->data == q){
+                return pos;
             }
+            pos++;
             temp = temp->next;
         }
         return -1;
@@ -218,8 +225,9 @@ int main(){    LinkedList listTest = LinkedList();
             case 7:
                 cout << "Enter the element to be searched: ";
                 cin >> input;
-                if (list.search(input) != -1){
-                    cout << "Element found"<<endl;
+                pos = list.search(input);
+                if ( pos!= -1){
+                    cout << "Element found at "<<pos<<endl;
                 }else{
                     cout << "Element not found"<<endl;
                 }

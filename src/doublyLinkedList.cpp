@@ -156,6 +156,7 @@ int main(){
     bool run = true;
     int choice, data, pos;
     while (run){
+        cout << "Doubly Linked List Operations"<<endl;
         cout << "1. Insert at end"<<endl;
         cout << "2. Insert at start"<<endl;
         cout << "3. Insert at position"<<endl;
@@ -165,7 +166,8 @@ int main(){
         cout << "7. Count"<<endl;
         cout << "8. Print"<<endl;
         cout << "9. Reverse"<<endl;
-        cout << "10. Exit"<<endl;
+        cout << "10. Search"<<endl;
+        cout << "11. Exit"<<endl;
         cout << "Enter your choice: ";
         cin >> choice;
         switch (choice){
@@ -207,6 +209,15 @@ int main(){
                 list->reverse();
                 break;
             case 10:
+                cout << "Enter data: ";
+                cin >> data;
+                if (list->search(data)){
+                    cout << "Element found in List" << endl;
+                } else {
+                    cout << "Element not found in List" << endl;
+                }
+                break;
+            case 11:
                 run = false;
                 break;
             default:
